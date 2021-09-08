@@ -1,16 +1,9 @@
 package View;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class IterfaceUsuario {
-    Scanner scanner = new Scanner(System.in);
-    Scanner scannerAdd = new Scanner(System.in);
-    Scanner scannerPriorizar = new Scanner(System.in);
-    Scanner scannerMenu = new Scanner(System.in);
-    Scanner scannerEditarInt = new Scanner(System.in);
-    Scanner scannerEditarString = new Scanner(System.in);
-    Scanner scannerConcluir = new Scanner(System.in);
 
+    Scanner scannerMenu = new Scanner(System.in);
     
     public void criarMenu(){
         System.out.println("|------------------- Menu de Ferramentas -------------------|");
