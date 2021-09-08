@@ -1,3 +1,4 @@
+package Model;
 public enum TamanhoPeca {
     PEQUENO("P"),
     MEDIO("M"),
