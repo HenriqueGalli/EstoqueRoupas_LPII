@@ -11,9 +11,24 @@ public class ItemEstoque {
     private CorPeca corPeca;
     private double valorEtiqueta;
     private double valorPago;
-    private double valorMargem;
     private double precoSugerido;
 
+    public ItemEstoque(int codigoItem, Date dataEntrada, String localCompra, String tipoRoupa,
+                        String marcaRoupa, String caracteristicaRoupa, TamanhoPeca tamanhoPeca,
+                        CorPeca corPeca, double valorEtiqueta, double valorPago,double precoSugerido){
+        this.codigoItem = codigoItem;
+        this.dataEntrada = dataEntrada;
+        this.localCompra = localCompra;
+        this.tipoRoupa = tipoRoupa;
+        this.marcaRoupa = marcaRoupa;
+        this.caracteristicaRoupa = caracteristicaRoupa;
+        this.tamanhoPeca = tamanhoPeca;
+        this.corPeca = corPeca;
+        this.valorEtiqueta = valorEtiqueta;
+        this.valorPago = valorPago;
+        this.precoSugerido = precoSugerido;
+    }
+    
     public int getCodigoItem() {
         return this.codigoItem;
     }
@@ -95,11 +110,7 @@ public class ItemEstoque {
     }
 
     public double getValorMargem() {
-        return this.valorMargem;
-    }
-
-    public void setValorMargem(double valorMargem) {
-        this.valorMargem = valorMargem;
+        return this.valorPago*2;
     }
 
     public double getPrecoSugerido() {
