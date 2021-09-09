@@ -27,11 +27,12 @@ public class IterfaceUsuario {
             break;
 
           case "2":
-            metodosEstoque.listarEstoque();
+            metodosEstoque.listarEstoqueDetalhado(metodosEstoque.listarEstoque());
             criarMenu();
             break;
 
           case "3":
+            metodosEstoque.excluirProduto(metodosEstoque.listarEstoque());
             criarMenu();
             break;
 

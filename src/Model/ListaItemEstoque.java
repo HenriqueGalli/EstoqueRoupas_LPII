@@ -17,7 +17,7 @@ public class ListaItemEstoque {
         itens.add(item);
     }
 
-    public void excludeListaEstoque(ItemEstoque item){
+    public void excludeListaEstoque(int item){
         itens.remove(item);
     }
 }
