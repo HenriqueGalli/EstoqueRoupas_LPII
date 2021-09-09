@@ -161,8 +161,8 @@ public class FuncionalidadesEstoque {
     }
 
     public void editarProtudo() {
-        listarEstoqueDetalhado(listarEstoque());
-
+        int indiceProduto = listarEstoque();
+        listarEstoqueDetalhado(indiceProduto);
         int numeroItemEscolhido;
         System.out.println("Digite o Item que deseja alterar os dados");
         numeroItemEscolhido = scanner.nextInt();
@@ -170,9 +170,11 @@ public class FuncionalidadesEstoque {
         switch (numeroItemEscolhido) {
             case 1:
                 System.out.println("Digite o novo valor para o Código do Produto");
+                listaItemEstoque.alterarValorCodigo(indiceProduto, scanner.nextInt());
                 break;
             case 2:
-                System.out.println("Digite o novo valor para a Date de Entrada");
+                System.out.println("Digite o novo valor para a Data de Entrada");
+                // listaItemEstoque.alterarValorData(indiceProduto, );
                 break;
             case 3:
                 System.out.println("Digite o novo valor para o Local da Compra");
@@ -193,9 +195,18 @@ public class FuncionalidadesEstoque {
             case 8:
                 System.out.println("Digite o novo valor para a Cor do Produto");
                 preencherCorProduto();
-            break;
+                break;
             case 9:
-                System.out.println("Digite o novo valor para o Código do Produto");
+                System.out.println("Digite o novo valor para o Valor de etiqueta do Produto");
+                break;
+            case 10:
+                System.out.println("Digite o novo valor para o Valor pago na compra do Produto");
+                break;
+            case 11:
+                System.out.println("Digite o novo valor para o Valor para margem");
+                break;
+            case 12:
+                System.out.println("Digite o novo valor para o Preço sugerido:R$");
                 break;
             default:
                 break;
