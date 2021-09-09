@@ -13,11 +13,11 @@ public class ListaItemEstoque {
         return itens.size();
     }
 
-    public void addTarefa(ItemEstoque item){
+    public void addListaEstoque(ItemEstoque item){
         itens.add(item);
     }
 
-    public void excludeTarefa(ItemEstoque item){
+    public void excludeListaEstoque(ItemEstoque item){
         itens.remove(item);
     }
 }

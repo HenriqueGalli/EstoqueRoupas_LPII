@@ -1,5 +1,8 @@
+import View.IterfaceUsuario;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        IterfaceUsuario iterfaceUsuario = new IterfaceUsuario();
+        iterfaceUsuario.criarMenu();
     }
 }

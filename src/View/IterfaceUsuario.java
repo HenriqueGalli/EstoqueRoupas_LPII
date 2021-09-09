@@ -1,11 +1,15 @@
 package View;
+import java.text.ParseException;
 import java.util.Scanner;
+
+import Controller.FuncionalidadesEstoque;
 
 public class IterfaceUsuario {
 
     Scanner scannerMenu = new Scanner(System.in);
-    
-    public void criarMenu(){
+    FuncionalidadesEstoque metodosEstoque = new FuncionalidadesEstoque();
+
+    public void criarMenu() throws ParseException{
         System.out.println("|------------------- Menu de Ferramentas -------------------|");
         System.out.println("|                  1 - Adicionar Tarefas                    |");
         System.out.println("|                  2 - Listar todas as Tarefas              |");
@@ -18,10 +22,12 @@ public class IterfaceUsuario {
 
         switch (opcao) {
           case "1":   
+            metodosEstoque.criarNovoItem();
             criarMenu();
             break;
 
           case "2":
+            metodosEstoque.listarEstoque();
             criarMenu();
             break;
 
