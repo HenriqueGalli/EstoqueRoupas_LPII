@@ -6,12 +6,9 @@ import Model.CorPeca;
 import Model.ItemEstoque;
 import Model.ListaItemEstoque;
 import Model.TamanhoPeca;
-
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class FuncionalidadesEstoque {
@@ -23,7 +20,6 @@ public class FuncionalidadesEstoque {
         String finalizarInclusao = "";
 
         try {
-
             do {
                 System.out.println("|----------------------- Novo Item -----------------------|");
 
@@ -170,7 +166,8 @@ public class FuncionalidadesEstoque {
         switch (numeroItemEscolhido) {
             case 1:
                 System.out.println("Digite o novo valor para o Código do Produto");
-                listaItemEstoque.alterarValorCodigo(indiceProduto, scanner.nextInt());
+                ArrayList<ItemEstoque> itens = listaItemEstoque.getList();
+                itens.get(numeroItemEscolhido-1).setCodigoItem(5);
                 break;
             case 2:
                 System.out.println("Digite o novo valor para a Data de Entrada");

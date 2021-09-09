@@ -22,48 +22,4 @@ public class ListaItemEstoque {
         itens.remove(item);
     }
 
-    public void alterarValorCodigo(int item, int codigo){
-        itens.get(item).setCodigoItem(codigo);
-    }
-
-    public void alterarValorData(int item, Date dataEntrada){
-        itens.get(item).setDataEntrada(dataEntrada);
-    }
-    
-    public void alterarValorLocal(int item, String localCompra){
-        itens.get(item).setLocalCompra(localCompra);
-    }
-
-    public void alterarValorTipo(int item, String tipoRoupa){
-        itens.get(item).setTipoRoupa(tipoRoupa);
-    }
-
-    public void alterarValorMarca(int item, String marcaRoupa){
-        itens.get(item).setMarcaRoupa(marcaRoupa);
-    }
-
-    public void alterarValorCaracteristicas(int item, String caracteristicaRoupa){
-        itens.get(item).setCaracteristicaRoupa(caracteristicaRoupa);
-    }
-
-    public void alterarValorTamanho(int item, Date data){
-        itens.get(item).setDataEntrada(data);
-    }
-
-    public void alterarValorCor(int item, Date data){
-        itens.get(item).setDataEntrada(data);
-    }
-    public void alterarValorEtiqueta(int item, Date data){
-        itens.get(item).setDataEntrada(data);
-    }
-    public void alterarValorPagoCompra(int item, Date data){
-        itens.get(item).setDataEntrada(data);
-    }
-    public void alterarValorMargem(int item, Date data){
-        itens.get(item).setDataEntrada(data);
-    }
-    public void alterarValorPrecoSugerido(int item, Date data){
-        itens.get(item).setDataEntrada(data);
-    }
-
 }
