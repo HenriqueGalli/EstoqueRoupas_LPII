@@ -37,6 +37,7 @@ public class IterfaceUsuario {
             break;
 
           case "4":
+            metodosEstoque.editarProtudo();
             criarMenu();
             break;
 

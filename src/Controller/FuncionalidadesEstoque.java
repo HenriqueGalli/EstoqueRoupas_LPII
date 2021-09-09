@@ -53,57 +53,11 @@ public class FuncionalidadesEstoque {
 
                 // Tamanho
                 System.out.println("Preencha o Tamanho:");
-                System.out.println("1 - P\n2 - M\n3 - G");
-                int numeroTamanho = scanner.nextInt();
-                TamanhoPeca tamanhoPeca = null;
-                switch (numeroTamanho) {
-                    case 1:
-                        tamanhoPeca = TamanhoPeca.PEQUENO;
-                        break;
-
-                    case 2:
-                        tamanhoPeca = TamanhoPeca.MEDIO;
-                        break;
-
-                    case 3:
-                        tamanhoPeca = TamanhoPeca.GRANDE;
-                        break;
-
-                    default:
-                        System.out.println("Tamanho inválido selecione uma opção válida!");
-                        break;
-                }
+                TamanhoPeca tamanhoPeca = preencherTamanhoProduto();
 
                 // Cor
-                System.out.println("Preencha o Tamanho:");
-                System.out.println("1 - AZUL\n2 - BRANCA\n3 - PRETA\n4 - LARANJA\n5 - CINZA");
-                int numeroCor = scanner.nextInt();
-                CorPeca corPeca = null;
-                switch (numeroCor) {
-                    case 1:
-                        corPeca = CorPeca.AZUL;
-                        break;
-
-                    case 2:
-                        corPeca = CorPeca.BRANCA;
-                        break;
-
-                    case 3:
-                        corPeca = CorPeca.PRETA;
-                        break;
-
-                    case 4:
-                        corPeca = CorPeca.LARANJA;
-                        break;
-
-                    case 5:
-                        corPeca = CorPeca.CINZA;
-                        break;
-
-                    default:
-                        System.out.println("Cor inválida selecione uma opção válida!");
-                        break;
-                }
+                System.out.println("Preencha a Cor:");
+                CorPeca corPeca = preencherCorProduto();
 
                 // Valor de etiqueta na compra
                 System.out.println("Preencha o Valor de etiqueta na compra:");
@@ -149,48 +103,158 @@ public class FuncionalidadesEstoque {
     }
 
     public void listarEstoqueDetalhado(int numeroItemEscolhido) {
-        if( numeroItemEscolhido >= 0){
+        if (numeroItemEscolhido >= 0) {
             System.out.println("|--------------------- Item Detalhado ----------------------|");
 
             System.out.println(String.format("%-60s",
-                    "| - Código do Item:" + listaItemEstoque.getList().get(numeroItemEscolhido).getCodigoItem()) + "|");
+                    "| 1 - Código do Item:" + listaItemEstoque.getList().get(numeroItemEscolhido).getCodigoItem())
+                    + "|");
 
             System.out.println(String.format("%-60s",
-                    "| - Data de Entrada:" + listaItemEstoque.getList().get(numeroItemEscolhido).getDataEntrada()) + "|");
-            System.out.println(String.format("%-60s",
-                    "| - Local da Compra:" + listaItemEstoque.getList().get(numeroItemEscolhido).getLocalCompra()) + "|");
-            System.out.println(
-                    String.format("%-60s", "| - Tipo:" + listaItemEstoque.getList().get(numeroItemEscolhido).getTipoRoupa())
-                            + "|");
-            System.out.println(String.format("%-60s",
-                    "| - Marca:" + listaItemEstoque.getList().get(numeroItemEscolhido).getMarcaRoupa()) + "|");
-            System.out.println(String.format("%-60s",
-                    "| - Características:" + listaItemEstoque.getList().get(numeroItemEscolhido).getCaracteristicaRoupa())
+                    "| 2 - Data de Entrada:" + listaItemEstoque.getList().get(numeroItemEscolhido).getDataEntrada())
                     + "|");
             System.out.println(String.format("%-60s",
-                    "| - Tamanho:" + listaItemEstoque.getList().get(numeroItemEscolhido).getTamanhoPeca()) + "|");
-            System.out.println(
-                    String.format("%-60s", "| - Cor:" + listaItemEstoque.getList().get(numeroItemEscolhido).getCorPeca())
+                    "| 3 - Local da Compra:" + listaItemEstoque.getList().get(numeroItemEscolhido).getLocalCompra())
+                    + "|");
+            System.out.println(String.format("%-60s",
+                    "| 4 - Tipo:" + listaItemEstoque.getList().get(numeroItemEscolhido).getTipoRoupa()) + "|");
+            System.out.println(String.format("%-60s",
+                    "| 5 - Marca:" + listaItemEstoque.getList().get(numeroItemEscolhido).getMarcaRoupa()) + "|");
+            System.out
+                    .println(String.format("%-60s",
+                            "| 6 - Características:"
+                                    + listaItemEstoque.getList().get(numeroItemEscolhido).getCaracteristicaRoupa())
                             + "|");
+            System.out.println(String.format("%-60s",
+                    "| 7 - Tamanho:" + listaItemEstoque.getList().get(numeroItemEscolhido).getTamanhoPeca()) + "|");
+            System.out.println(String.format("%-60s",
+                    "| 8 - Cor:" + listaItemEstoque.getList().get(numeroItemEscolhido).getCorPeca()) + "|");
             System.out
                     .println(
                             String.format("%-60s",
-                                    "| - Valor de etiqueta na compra:R$"
+                                    "| 9 - Valor de etiqueta na compra:R$"
                                             + listaItemEstoque.getList().get(numeroItemEscolhido).getValorEtiqueta())
                                     + "|");
+            System.out
+                    .println(
+                            String.format("%-60s",
+                                    "| 10 - Valor pago na compra:R$"
+                                            + listaItemEstoque.getList().get(numeroItemEscolhido).getValorPago())
+                                    + "|");
+
+            System.out
+                    .println(
+                            String.format("%-60s",
+                                    "| 11 - Valor para margem de 100%:R$"
+                                            + listaItemEstoque.getList().get(numeroItemEscolhido).getValorMargem())
+                                    + "|");
+
             System.out.println(String.format("%-60s",
-                    "| - Valor pago na compra:R$" + listaItemEstoque.getList().get(numeroItemEscolhido).getValorPago())
-                    + "|");
-            System.out.println(String.format("%-60s", "| - Valor para margem de 100%:R$"
-                    + listaItemEstoque.getList().get(numeroItemEscolhido).getValorMargem()) + "|");
-            System.out.println(String.format("%-60s",
-                    "| - Preço sugerido:R$" + listaItemEstoque.getList().get(numeroItemEscolhido).getPrecoSugerido())
+                    "| 12 - Preço sugerido:R$" + listaItemEstoque.getList().get(numeroItemEscolhido).getPrecoSugerido())
                     + "|");
             System.out.println("|-----------------------------------------------------------|\n");
         }
     }
-    
-    public void excluirProduto(int numeroItemEscolhido){
+
+    public void excluirProduto(int numeroItemEscolhido) {
         listaItemEstoque.excludeListaEstoque(numeroItemEscolhido);
+    }
+
+    public void editarProtudo() {
+        listarEstoqueDetalhado(listarEstoque());
+
+        int numeroItemEscolhido;
+        System.out.println("Digite o Item que deseja alterar os dados");
+        numeroItemEscolhido = scanner.nextInt();
+
+        switch (numeroItemEscolhido) {
+            case 1:
+                System.out.println("Digite o novo valor para o Código do Produto");
+                break;
+            case 2:
+                System.out.println("Digite o novo valor para a Date de Entrada");
+                break;
+            case 3:
+                System.out.println("Digite o novo valor para o Local da Compra");
+                break;
+            case 4:
+                System.out.println("Digite o novo valor para o Tipo do Produto");
+                break;
+            case 5:
+                System.out.println("Digite o novo valor para a Marca do Produto");
+                break;
+            case 6:
+                System.out.println("Digite o novo valor para as Características do Produto");
+                break;
+            case 7:
+                System.out.println("Digite o novo valor para o Tamanho do Produto");
+                preencherTamanhoProduto();
+                break;
+            case 8:
+                System.out.println("Digite o novo valor para a Cor do Produto");
+                preencherCorProduto();
+            break;
+            case 9:
+                System.out.println("Digite o novo valor para o Código do Produto");
+                break;
+            default:
+                break;
+        }
+    }
+
+    private TamanhoPeca preencherTamanhoProduto() {
+        System.out.println("1 - P\n2 - M\n3 - G");
+        int numeroTamanho = scanner.nextInt();
+        TamanhoPeca tamanhoPeca = null;
+        switch (numeroTamanho) {
+            case 1:
+                tamanhoPeca = TamanhoPeca.PEQUENO;
+                break;
+
+            case 2:
+                tamanhoPeca = TamanhoPeca.MEDIO;
+                break;
+
+            case 3:
+                tamanhoPeca = TamanhoPeca.GRANDE;
+                break;
+
+            default:
+                System.out.println("Tamanho inválido selecione uma opção válida!");
+                break;
+        }
+        return tamanhoPeca;
+    }
+
+    private CorPeca preencherCorProduto() {
+        System.out.println("1 - AZUL\n2 - BRANCA\n3 - PRETA\n4 - LARANJA\n5 - CINZA");
+        int numeroCor = scanner.nextInt();
+        CorPeca corPeca = null;
+        switch (numeroCor) {
+            case 1:
+                corPeca = CorPeca.AZUL;
+                break;
+
+            case 2:
+                corPeca = CorPeca.BRANCA;
+                break;
+
+            case 3:
+                corPeca = CorPeca.PRETA;
+                break;
+
+            case 4:
+                corPeca = CorPeca.LARANJA;
+                break;
+
+            case 5:
+                corPeca = CorPeca.CINZA;
+                break;
+
+            default:
+                System.out.println("Cor inválida selecione uma opção válida!");
+                break;
+        }
+        return corPeca;
     }
 }
