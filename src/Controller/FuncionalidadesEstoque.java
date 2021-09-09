@@ -158,52 +158,59 @@ public class FuncionalidadesEstoque {
 
     public void editarProtudo() {
         int indiceProduto = listarEstoque();
+        String novoValor = "";
         listarEstoqueDetalhado(indiceProduto);
         int numeroItemEscolhido;
         System.out.println("Digite o Item que deseja alterar os dados");
         numeroItemEscolhido = scanner.nextInt();
+        ArrayList<ItemEstoque> itens = listaItemEstoque.getList();
 
         switch (numeroItemEscolhido) {
             case 1:
                 System.out.println("Digite o novo valor para o Código do Produto");
-                ArrayList<ItemEstoque> itens = listaItemEstoque.getList();
-                itens.get(numeroItemEscolhido-1).setCodigoItem(5);
+                itens.get(indiceProduto).setCodigoItem(scanner.nextInt());
                 break;
             case 2:
                 System.out.println("Digite o novo valor para a Data de Entrada");
-                // listaItemEstoque.alterarValorData(indiceProduto, );
+                //itens.get(numeroItemEscolhido-1).setDataEntrada(dataEntrada);
                 break;
             case 3:
+                itens = listaItemEstoque.getList();
                 System.out.println("Digite o novo valor para o Local da Compra");
+                novoValor = scanner.next();
+                itens.get(indiceProduto).setLocalCompra(novoValor);
                 break;
             case 4:
                 System.out.println("Digite o novo valor para o Tipo do Produto");
+                itens.get(indiceProduto).setTipoRoupa(scanner.next());
                 break;
             case 5:
                 System.out.println("Digite o novo valor para a Marca do Produto");
+                itens.get(indiceProduto).setMarcaRoupa(scanner.next());
                 break;
             case 6:
                 System.out.println("Digite o novo valor para as Características do Produto");
+                itens.get(indiceProduto).setCaracteristicaRoupa(scanner.next());
                 break;
             case 7:
                 System.out.println("Digite o novo valor para o Tamanho do Produto");
-                preencherTamanhoProduto();
+                itens.get(indiceProduto).setTamanhoPeca(preencherTamanhoProduto());
                 break;
             case 8:
                 System.out.println("Digite o novo valor para a Cor do Produto");
-                preencherCorProduto();
+                itens.get(indiceProduto).setCorPeca(preencherCorProduto());
                 break;
             case 9:
                 System.out.println("Digite o novo valor para o Valor de etiqueta do Produto");
+                itens.get(indiceProduto).setValorEtiqueta(scanner.nextDouble());
                 break;
             case 10:
                 System.out.println("Digite o novo valor para o Valor pago na compra do Produto");
-                break;
-            case 11:
-                System.out.println("Digite o novo valor para o Valor para margem");
+                itens.get(indiceProduto).setValorPago(scanner.nextDouble());
                 break;
             case 12:
                 System.out.println("Digite o novo valor para o Preço sugerido:R$");
+                itens.get(indiceProduto).setPrecoSugerido(scanner.nextDouble());
                 break;
             default:
                 break;
