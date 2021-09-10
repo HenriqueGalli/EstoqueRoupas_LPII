@@ -265,9 +265,8 @@ public class FuncionalidadesEstoque {
         return localCompra;
     }
 
-    private Date entradaData(){
+    private Date entradaData() throws ParseException{
         // Data de Entrada
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date dataEntrada = new Date();
         return dataEntrada;
     }

@@ -14,6 +14,7 @@ import java.util.Date;
 public class ListaItemEstoque {
 
     private static final ArrayList<ItemEstoque> itens = new ArrayList<ItemEstoque>();
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
     public ArrayList<ItemEstoque> getList() {
         return itens;
@@ -36,7 +37,7 @@ public class ListaItemEstoque {
         PrintWriter gravarArq = new PrintWriter(arq);
         for (int i = 0; i < getListSize(); i++) {
             gravarArq.printf(itens.get(i).getCodigoItem() + ";");
-            gravarArq.printf(itens.get(i).getDataEntrada() + ";");
+            gravarArq.printf(formato.format(itens.get(i).getDataEntrada()) + ";");
             gravarArq.printf(itens.get(i).getLocalCompra() + ";");
             gravarArq.printf(itens.get(i).getTipoRoupa() + ";");
             gravarArq.printf(itens.get(i).getMarcaRoupa() + ";");
@@ -51,25 +52,31 @@ public class ListaItemEstoque {
     }
 
     public void lerArquivo() throws IOException, NumberFormatException, ParseException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        FileReader arq = new FileReader("src//Arquivo.txt");
-        BufferedReader lerArq = new BufferedReader(arq);
-        String linha = lerArq.readLine();        
-        if (linha != null) {
-            while (linha != null) {
-                String[] produto = linha.split(";");
-                TamanhoPeca tamanhoPeca = lerTamanho(produto[6]);
-                CorPeca corPeca = lerCor(produto[7]);
-                ItemEstoque item = new ItemEstoque(Integer.parseInt(produto[0]), formato.parse(produto[1]), produto[2],
-                        produto[3], produto[4], produto[5],tamanhoPeca, corPeca, Double.parseDouble(produto[8]), 
-                        Double.parseDouble(produto[9]), Double.parseDouble(produto[10]));
-                addListaEstoque(item);
-                linha = lerArq.readLine();
+        try {
+            FileReader arq = new FileReader("src//Arquivo.txt");
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha = lerArq.readLine();
+            if (linha != null) {
+                while (linha != null) {
+                    String[] produto = linha.split(";");
+                    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                    TamanhoPeca tamanhoPeca = lerTamanho(produto[6]);
+                    CorPeca corPeca = lerCor(produto[7]);
+                    ItemEstoque item = new ItemEstoque(Integer.parseInt(produto[0]), formato.parse(produto[1]),
+                            produto[2], produto[3], produto[4], produto[5], tamanhoPeca, corPeca,
+                            Double.parseDouble(produto[8]), Double.parseDouble(produto[9]),
+                            Double.parseDouble(produto[10]));
+                    addListaEstoque(item);
+                    linha = lerArq.readLine();
+                }
             }
+        } catch (Exception e) {
+            
         }
+
     }
 
-    private TamanhoPeca lerTamanho(String tamanho){
+    private TamanhoPeca lerTamanho(String tamanho) {
         TamanhoPeca tamanhoPeca = null;
         switch (tamanho) {
             case "PEQUENO":
@@ -90,7 +97,7 @@ public class ListaItemEstoque {
         return tamanhoPeca;
     }
 
-    private CorPeca lerCor(String tamanho){
+    private CorPeca lerCor(String tamanho) {
         CorPeca corPeca = null;
         switch (tamanho) {
             case "AZUL":
