@@ -23,52 +23,8 @@ public class FuncionalidadesEstoque {
             do {
                 System.out.println("|----------------------- Novo Item -----------------------|");
 
-                // Código do Item
-                System.out.println("Preencha o Código do Item:");
-                int codigoItem = scanner.nextInt();
-
-                // Data de Entrada
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                Date dataEntrada = new Date();
-
-                // Local da Compra
-                System.out.println("Preencha o Local da Compra:");
-                String localCompra = scanner.next();
-
-                // Tipo
-                System.out.println("Preencha o Tipo da Roupa:");
-                String tipoRoupa = scanner.next();
-
-                // Marca
-                System.out.println("Preencha a Marca:");
-                String marcaRoupa = scanner.next();
-
-                // Caracteristicas
-                System.out.println("Preencha a(s) Característica(s):");
-                String caracteristicaRoupa = scanner.next();
-
-                // Tamanho
-                System.out.println("Preencha o Tamanho:");
-                TamanhoPeca tamanhoPeca = preencherTamanhoProduto();
-
-                // Cor
-                System.out.println("Preencha a Cor:");
-                CorPeca corPeca = preencherCorProduto();
-
-                // Valor de etiqueta na compra
-                System.out.println("Preencha o Valor de etiqueta na compra:");
-                double valorEtiqueta = scanner.nextDouble();
-
-                // Valor pago na compra
-                System.out.println("Preencha o Valor pago na compra:");
-                double valorPago = scanner.nextDouble();
-
-                // Preço Sugerido
-                System.out.println("Preencha o Valor do Preço Sugerido");
-                double precoSugerido = scanner.nextDouble();
-
-                ItemEstoque item = new ItemEstoque(codigoItem, dataEntrada, localCompra, tipoRoupa, marcaRoupa,
-                        caracteristicaRoupa, tamanhoPeca, corPeca, valorEtiqueta, valorPago, precoSugerido);
+                ItemEstoque item = new ItemEstoque(entradaCodigoItem(), entradaData(), entradaLocalCompra(), entradaTipo(), entradaMarca(),
+                entradaCaracteristicas(), entradaTamanhoProduto(true), entradaCorProduto(true), entradaValorEtiqueta(), entradaValorPago(), entradaPreco());
 
                 listaItemEstoque.addListaEstoque(item);
 
@@ -90,15 +46,15 @@ public class FuncionalidadesEstoque {
                         cont + " - Código do Item:" + estoque.getCodigoItem() + " e Tipo:" + estoque.getTipoRoupa());
                 cont++;
             }
-            System.out.println("Digite o Item que deseja visualizar os detalhes");
-            numeroItemEscolhido = scanner.nextInt() - 1;
+            numeroItemEscolhido = validarNumeroSelecionadoOpcao();
         } else {
-            System.out.println("Não existe nenhuma produto cadastrada na lista!");
+            System.out.println("Não existe nenhum produto cadastrada na lista!");
         }
         return numeroItemEscolhido;
     }
 
     public void listarEstoqueDetalhado(int numeroItemEscolhido) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         if (numeroItemEscolhido >= 0) {
             System.out.println("|--------------------- Item Detalhado ----------------------|");
 
@@ -107,7 +63,7 @@ public class FuncionalidadesEstoque {
                     + "|");
 
             System.out.println(String.format("%-60s",
-                    "| 2 - Data de Entrada:" + listaItemEstoque.getList().get(numeroItemEscolhido).getDataEntrada())
+                    "| 2 - Data de Entrada:" + formatter.format(listaItemEstoque.getList().get(numeroItemEscolhido).getDataEntrada()))
                     + "|");
             System.out.println(String.format("%-60s",
                     "| 3 - Local da Compra:" + listaItemEstoque.getList().get(numeroItemEscolhido).getLocalCompra())
@@ -172,7 +128,7 @@ public class FuncionalidadesEstoque {
                 break;
             case 2:
                 System.out.println("Digite o novo valor para a Data de Entrada");
-                //itens.get(numeroItemEscolhido-1).setDataEntrada(dataEntrada);
+                // itens.get(numeroItemEscolhido-1).setDataEntrada(dataEntrada);
                 break;
             case 3:
                 itens = listaItemEstoque.getList();
@@ -194,11 +150,11 @@ public class FuncionalidadesEstoque {
                 break;
             case 7:
                 System.out.println("Digite o novo valor para o Tamanho do Produto");
-                itens.get(indiceProduto).setTamanhoPeca(preencherTamanhoProduto());
+                itens.get(indiceProduto).setTamanhoPeca(entradaTamanhoProduto(false));
                 break;
             case 8:
                 System.out.println("Digite o novo valor para a Cor do Produto");
-                itens.get(indiceProduto).setCorPeca(preencherCorProduto());
+                itens.get(indiceProduto).setCorPeca(entradaCorProduto(false));
                 break;
             case 9:
                 System.out.println("Digite o novo valor para o Valor de etiqueta do Produto");
@@ -217,59 +173,195 @@ public class FuncionalidadesEstoque {
         }
     }
 
-    private TamanhoPeca preencherTamanhoProduto() {
+    private TamanhoPeca entradaTamanhoProduto(boolean primeiroMenu) {
+        // Tamanho
+        if(primeiroMenu){
+            System.out.println("Preencha o Tamanho:");
+        }
         System.out.println("1 - P\n2 - M\n3 - G");
-        int numeroTamanho = scanner.nextInt();
+        String numeroTamanho = scanner.next();
         TamanhoPeca tamanhoPeca = null;
         switch (numeroTamanho) {
-            case 1:
+            case "1":
                 tamanhoPeca = TamanhoPeca.PEQUENO;
                 break;
 
-            case 2:
+            case "2":
                 tamanhoPeca = TamanhoPeca.MEDIO;
                 break;
 
-            case 3:
+            case "3":
                 tamanhoPeca = TamanhoPeca.GRANDE;
                 break;
 
             default:
                 System.out.println("Tamanho inválido selecione uma opção válida!");
+                entradaTamanhoProduto(false);
                 break;
         }
         return tamanhoPeca;
     }
 
-    private CorPeca preencherCorProduto() {
+    private CorPeca entradaCorProduto(boolean primeiroMenu) {
+        // Cor
+        if(primeiroMenu){
+            System.out.println("Preencha a Cor:");
+        }
         System.out.println("1 - AZUL\n2 - BRANCA\n3 - PRETA\n4 - LARANJA\n5 - CINZA");
-        int numeroCor = scanner.nextInt();
+        String numeroCor = scanner.next();
         CorPeca corPeca = null;
         switch (numeroCor) {
-            case 1:
+            case "1":
                 corPeca = CorPeca.AZUL;
                 break;
 
-            case 2:
+            case "2":
                 corPeca = CorPeca.BRANCA;
                 break;
 
-            case 3:
+            case "3":
                 corPeca = CorPeca.PRETA;
                 break;
 
-            case 4:
+            case "4":
                 corPeca = CorPeca.LARANJA;
                 break;
 
-            case 5:
+            case "5":
                 corPeca = CorPeca.CINZA;
                 break;
 
             default:
                 System.out.println("Cor inválida selecione uma opção válida!");
+                entradaCorProduto(false);
                 break;
         }
         return corPeca;
+    }
+
+    // Metodos de Entrada de Dados
+    private int entradaCodigoItem() {
+        // Código do Item
+        try {
+            System.out.println("Preencha o Código do Item:");
+            return scanner.nextInt();
+
+        } catch (Exception e) {
+            scanner.nextLine(); // Limpa o Scanner
+            System.out.println("Preencha o Código numérico válido!");
+            entradaCodigoItem();
+            return 0;
+        }
+    }
+
+    private String entradaLocalCompra() {
+        // Local da Compra
+        System.out.println("Preencha o Local da Compra:");
+        String localCompra = scanner.next();
+        if(localCompra.equals("")){
+            System.out.println("Campo não pode ser vazio!");
+            entradaLocalCompra();
+        }
+        return localCompra;
+    }
+
+    private Date entradaData(){
+        // Data de Entrada
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataEntrada = new Date();
+        return dataEntrada;
+    }
+
+    private String entradaTipo(){
+         // Tipo
+         System.out.println("Preencha o Tipo da Roupa:");
+         String tipoRoupa = scanner.next();
+         if(tipoRoupa.equals("")){
+            System.out.println("Campo não pode ser vazio!");
+            entradaTipo();
+        }
+        return tipoRoupa;
+    }
+
+    private String entradaMarca(){
+         // Marca
+         System.out.println("Preencha a Marca:");
+         String marcaRoupa = scanner.next();
+         if(marcaRoupa.equals("")){
+            System.out.println("Campo não pode ser vazio!");
+            entradaMarca();
+        }
+         return marcaRoupa;
+    }
+
+    private String entradaCaracteristicas(){
+        // Caracteristicas
+        System.out.println("Preencha a(s) Característica(s):");
+        String caracteristicaRoupa = scanner.next();
+        if(caracteristicaRoupa.equals("")){
+            System.out.println("Campo não pode ser vazio!");
+            entradaCaracteristicas();
+        }
+         return caracteristicaRoupa;
+    }
+
+    private double entradaValorEtiqueta() {
+        // Valor de etiqueta na compra  
+        try {
+            System.out.println("Preencha o Valor de etiqueta na compra:");
+            return scanner.nextDouble();
+        } catch (Exception e) {
+            scanner.nextLine(); // Limpa o Scanner
+            System.out.println("Preencha um Valor de etiqueta válido!");
+            entradaValorEtiqueta();
+            return 0;
+        }
+    }
+
+    private double entradaValorPago() {
+         // Valor pago na compra
+        try {
+            System.out.println("Preencha o Valor pago na compra:");
+            return scanner.nextDouble();
+        } catch (Exception e) {
+            scanner.nextLine(); // Limpa o Scanner
+            System.out.println("Preencha um Valor pago na compra válido!");
+            entradaValorPago();
+            return 0;
+        }
+    }
+
+    private double entradaPreco() {
+        // Preço Sugerido
+        try {
+            System.out.println("Preencha o Valor do Preço Sugerido");
+            return scanner.nextDouble();
+        } catch (Exception e) {
+            scanner.nextLine(); // Limpa o Scanner
+            System.out.println("Preencha um Preço Sugerido válido!");
+            entradaPreco();
+            return 0;
+        }
+    }
+
+    private int validarNumeroSelecionadoOpcao(){
+        try {
+            System.out.println("Digite o Item que deseja visualizar os detalhes");
+            int numeroSelecionado = scanner.nextInt();
+            if(listaItemEstoque.getList().size()>=numeroSelecionado){
+                return numeroSelecionado - 1;
+            }
+            else{
+                System.out.println("Preencha uma opção válida!");
+                validarNumeroSelecionadoOpcao();
+                return 0;
+            }
+            
+        } catch (Exception e) {
+            scanner.nextLine(); // Limpa o Scanner
+            System.out.println("Preencha uma opção válida!");
+            validarNumeroSelecionadoOpcao();
+            return 0;
+        }
     }
 }
